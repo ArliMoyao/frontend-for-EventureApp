@@ -14,8 +14,17 @@ export interface EventDoc {
   location: string;
   date: Date;
 }
+
+interface Event {
+  _id: string;
+  title: string;
+  description: string;
+  date: string;
+  location: string;
+  capacity: number;
+}
 export const useEventStore = defineStore("eventStore", () => {
-  const events = ref<any[]>([]);
+  const events = ref<Event[]>([]);
   const hostedEvents = ref<any[]>([]);
   const rsvpEvents = ref<any[]>([]);
   const loading = ref(false);
@@ -92,7 +101,10 @@ export const useEventStore = defineStore("eventStore", () => {
     }
   };
 
-  const getEventById = (eventId: ObjectId) => {
+  function handleEventCreated(newEvent: Event) {
+    events.value.push(newEvent);
+  }
+  const getEventById = (eventId: string) => {
     return events.value.find((event) => event._id === eventId);
   };
   return { events, addEvent, hostedEvents, rsvpEvents, loading, error, fetchEvents, fetchHostedEvents, fetchRsvpEvents, rsvpForEvent, upvoteEvent };

@@ -10,7 +10,7 @@ import SearchBar from "@/components/Events/SearchBar.vue";
 import { ref } from "vue";
 
 const { currentUsername, isLoggedIn } = storeToRefs(useUserStore());
-const events = ref([]);
+const events = ref<any[]>([]);
 const currentTab = ref("all");
 
 function handleEventCreated(newEvent) {
@@ -18,7 +18,7 @@ function handleEventCreated(newEvent) {
 }
 
 function handleSearch(query) {
-  // Implement search functionality if needed
+  console.log(query);
 }
 </script>
 
