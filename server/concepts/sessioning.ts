@@ -18,7 +18,7 @@ declare module "express-session" {
  */
 export default class SessioningConcept {
   start(session: SessionDoc, user: ObjectId) {
-    this.isLoggedOut(session);
+    this.isLoggedOut(session, true); // Allow logged-in users
     session.user = user.toString();
   }
 
@@ -38,8 +38,8 @@ export default class SessioningConcept {
     }
   }
 
-  isLoggedOut(session: SessionDoc) {
-    if (session.user !== undefined) {
+  isLoggedOut(session: SessionDoc, allowLoggedIn = false) {
+    if (!allowLoggedIn && session.user !== undefined) {
       throw new NotAllowedError("Must be logged out!");
     }
   }

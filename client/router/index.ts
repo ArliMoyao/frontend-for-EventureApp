@@ -3,9 +3,11 @@ import { createRouter, createWebHistory } from "vue-router";
 
 import { useUserStore } from "@/stores/user";
 import HomeView from "../views/HomeView.vue";
+import SettingView from "../views/SettingView.vue";
 import LoginView from "../views/LoginView.vue";
 import NotFoundView from "../views/NotFoundView.vue";
-import SettingView from "../views/SettingView.vue";
+
+//import { useEventStore } from "../stores/eventStore";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -19,7 +21,7 @@ const router = createRouter({
       path: "/setting",
       name: "Settings",
       component: SettingView,
-      meta: { requiresAuth: true },
+      meta: { requiresAuth: false },
     },
     {
       path: "/login",
