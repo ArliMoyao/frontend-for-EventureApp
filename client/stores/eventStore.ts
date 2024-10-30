@@ -101,11 +101,11 @@ export const useEventStore = defineStore("eventStore", () => {
     }
   };
 
-  // function handleEventCreated(newEvent: Event) {
-  //   events.value.push(newEvent);
-  // }
+  function handleEventCreated(newEvent: Event) {
+    events.value.push(newEvent);
+  }
   // const getEventById = (eventId: string) => {
   //   return events.value.find((event) => event._id === eventId);
   // };
-  return { events, addEvent, hostedEvents, rsvpEvents, loading, error, fetchEvents, fetchHostedEvents, fetchRsvpEvents, rsvpForEvent, upvoteEvent };
+  return { events, addEvent, hostedEvents, rsvpEvents, loading, error, handleEventCreated, fetchEvents, fetchHostedEvents, fetchRsvpEvents, rsvpForEvent, upvoteEvent };
 });

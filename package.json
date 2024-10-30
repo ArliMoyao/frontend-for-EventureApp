@@ -43,9 +43,10 @@
     "typescript": "^5.1.6",
     "vite": "^5.4.8",
     "vue-eslint-parser": "^9.4.3",
-    "vue-tsc": "^2.1.6"
+    "vue-tsc": "^2.1.8"
   },
   "dependencies": {
+    "@vue/runtime-core": "^3.5.12",
     "axios": "^1.7.7",
     "connect-mongo": "^5.0.0",
     "cors": "^2.8.5",

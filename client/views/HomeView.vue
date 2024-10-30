@@ -2,7 +2,7 @@
 import PostListComponent from "@/components/Post/PostListComponent.vue";
 import { useUserStore } from "@/stores/user";
 import { storeToRefs } from "pinia";
-import EventCreateForm from "@/Events/EventCreateForm.vue";
+import EventCreateForm from "@/components/Events/EventCreateForm.vue";
 import EventListComponent from "@/components/Events/EventListComponent.vue";
 import HostedEventsComponent from "@/components/Events/HostedEventsComponent.vue";
 import RsvpEventsComponent from "@/components/Events/RsvpEventsComponent.vue";
@@ -26,9 +26,9 @@ const currentTab = ref("all");
 //   events.value.push(newEvent);
 // }
 
-// function handleSearch(query) {
-//   console.log(query);
-// }
+function handleSearch(query: string) {
+  console.log(query);
+}
 </script>
 
 <template>
