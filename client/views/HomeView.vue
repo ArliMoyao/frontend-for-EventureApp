@@ -9,17 +9,26 @@ import RsvpEventsComponent from "@/components/Events/RsvpEventsComponent.vue";
 import SearchBar from "@/components/Events/SearchBar.vue";
 import { ref } from "vue";
 
+export interface Event {
+  _id: string;
+  title: string;
+  description: string;
+  date: string;
+  location: string;
+  capacity: number;
+}
+
 const { currentUsername, isLoggedIn } = storeToRefs(useUserStore());
 const events = ref<any[]>([]);
 const currentTab = ref("all");
 
-function handleEventCreated(newEvent) {
+function handleEventCreated(newEvent: Event) {
   events.value.push(newEvent);
 }
 
-function handleSearch(query) {
-  console.log(query);
-}
+// function handleSearch(query) {
+//   console.log(query);
+// }
 </script>
 
 <template>
