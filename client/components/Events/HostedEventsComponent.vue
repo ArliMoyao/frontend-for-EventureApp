@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import { onMounted } from "vue";
 import { useEventStore } from "@/stores/eventStore";
 import { useUserStore } from "@/stores/user";
@@ -27,4 +27,4 @@ onMounted(() => fetchHostedEvents(currentUser._id));
 
 <style scoped>
 /* Add your styles here */
-</style>
+</style> -->
