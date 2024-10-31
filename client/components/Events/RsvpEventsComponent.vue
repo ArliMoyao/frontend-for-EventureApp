@@ -1,3 +1,16 @@
+<script setup lang="ts">
+import { useEventStore } from "@/stores/eventStore";
+import { useUserStore } from "@/stores/user";
+// import { onMounted } from "vue";
+const eventStore = useEventStore();
+const userStore = useUserStore();
+const { rsvpEvents, loading, error, fetchRsvpEvents } = eventStore;
+const { currentUser } = userStore;
+
+// //do check current user not null
+// onMounted(() => fetchRsvpEvents(currentUser._id));
+</script>
+
 <template>
   <div>
     <h1>RSVP'd Events</h1>
@@ -14,17 +27,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { onMounted } from "vue";
-import { useEventStore } from "@/stores/eventStore";
-import { useUserStore } from "@/stores/user";
-const eventStore = useEventStore();
-const userStore = useUserStore();
-const { rsvpEvents, loading, error, fetchRsvpEvents } = eventStore;
-const { currentUser } = userStore;
-onMounted(() => fetchRsvpEvents(currentUser._id));
-</script>
 
 <style scoped>
 .event-post {

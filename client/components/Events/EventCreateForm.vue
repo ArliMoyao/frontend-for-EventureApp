@@ -1,38 +1,6 @@
-<template>
-  <div class="event-create">
-    <button @click="showForm = true" v-if="!showForm">Create Event</button>
-    <div v-if="showForm" class="form-container">
-      <form @submit.prevent="submitEvent">
-        <div>
-          <label for="title">Event Title:</label>
-          <input v-model="title" id="title" required />
-        </div>
-        <div>
-          <label for="description">Description:</label>
-          <textarea v-model="description" id="description" required></textarea>
-        </div>
-        <div>
-          <label for="location">Location:</label>
-          <input v-model="location" id="location" required />
-        </div>
-        <div>
-          <label for="date">Event Date:</label>
-          <input v-model="date" type="date" id="date" required />
-        </div>
-        <div>
-          <label for="capacity">Capacity:</label>
-          <input v-model.number="capacity" id="capacity" type="number" required />
-        </div>
-        <button type="submit" class="pure-button pure-button-primary">Create Event</button>
-        <button type="button" @click="showForm = false">Cancel</button>
-      </form>
-    </div>
-  </div>
-</template>
-
-<script setup>
-import { ref } from "vue";
+<script setup lang="ts">
 import { useEventStore } from "@/stores/eventStore";
+import { ref } from "vue";
 const eventStore = useEventStore();
 
 const title = ref("");
@@ -65,6 +33,37 @@ const submitEvent = async () => {
   }
 };
 </script>
+<template>
+  <div class="event-create">
+    <button @click="showForm = true" v-if="!showForm">Create Event</button>
+    <div v-if="showForm" class="form-container">
+      <form @submit.prevent="submitEvent">
+        <div>
+          <label for="title">Event Title:</label>
+          <input v-model="title" id="title" required />
+        </div>
+        <div>
+          <label for="description">Description:</label>
+          <textarea v-model="description" id="description" required></textarea>
+        </div>
+        <div>
+          <label for="location">Location:</label>
+          <input v-model="location" id="location" required />
+        </div>
+        <div>
+          <label for="date">Event Date:</label>
+          <input v-model="date" type="date" id="date" required />
+        </div>
+        <div>
+          <label for="capacity">Capacity:</label>
+          <input v-model.number="capacity" id="capacity" type="number" required />
+        </div>
+        <button type="submit" class="pure-button pure-button-primary">Create Event</button>
+        <button type="button" @click="showForm = false">Cancel</button>
+      </form>
+    </div>
+  </div>
+</template>
 
 <style scoped>
 .event-create {

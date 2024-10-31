@@ -81,7 +81,7 @@ export const useEventStore = defineStore("eventStore", () => {
   };
   const upvoteEvent = async (eventId: string) => {
     try {
-      const response = await fetchy(`/api/events/${eventId}/upvote`, "POST");
+      const response = await fetchy(`/api/upvotes/{$eventid}`, "POST");
       const updatedEvent = await response.json();
       const index = events.value.findIndex((event) => event._id === eventId);
       if (index !== -1) {

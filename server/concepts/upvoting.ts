@@ -40,6 +40,7 @@ export default class UpvotingConcept {
     return { msg: "Upvote successfully deleted", upvote: await this.upvotes.readOne({ _id }) };
   }
 
+  //
   // const upvote = await this.upvotes.popOne({ userId, eventId });
   // if (!upvote) {
   //     throw new NotFoundError(`Upvote ${userId} does not exist!`);
