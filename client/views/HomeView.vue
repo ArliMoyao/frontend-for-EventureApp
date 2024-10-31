@@ -2,7 +2,7 @@
 import PostListComponent from "@/components/Post/PostListComponent.vue";
 import { useUserStore } from "@/stores/user";
 import { storeToRefs } from "pinia";
-// import EventCreateForm from "@/components/Events/EventCreateForm.vue";
+import EventCreateForm from "@/components/Events/EventCreateForm.vue";
 import EventListComponent from "@/components/Events/EventListComponent.vue";
 import HostedEventsComponent from "@/components/Events/HostedEventsComponent.vue";
 import RsvpEventsComponent from "@/components/Events/RsvpEventsComponent.vue";
@@ -22,9 +22,9 @@ const { currentUsername, isLoggedIn } = storeToRefs(useUserStore());
 const events = ref<any[]>([]);
 const currentTab = ref("all");
 
-// function handleEventCreated(newEvent: Event) {
-//   events.value.push(newEvent);
-// }
+function handleEventCreated(newEvent: Event) {
+  events.value.push(newEvent);
+}
 
 function handleSearch(query: string) {
   console.log(query);
@@ -39,7 +39,7 @@ function handleSearch(query: string) {
       <h1 v-else>Please login!</h1>
     </section>
     <section v-if="isLoggedIn">
-      <!-- <EventCreateForm @eventCreated="handleEventCreated" /> -->
+      <EventCreateForm @eventCreated="handleEventCreated" />
       <SearchBar @search="handleSearch" />
       <nav>
         <ul>
