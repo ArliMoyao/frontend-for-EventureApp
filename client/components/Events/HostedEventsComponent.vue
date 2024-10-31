@@ -1,12 +1,20 @@
-<!-- <script setup lang="ts">
+<script setup lang="ts">
 import { onMounted } from "vue";
 import { useEventStore } from "@/stores/eventStore";
 import { useUserStore } from "@/stores/user";
 const eventStore = useEventStore();
 const userStore = useUserStore();
 const { hostedEvents, loading, error, fetchHostedEvents } = eventStore;
-const { currentUser } = userStore;
-onMounted(() => fetchHostedEvents(currentUser._id));
+const currentUser = userStore.currentUser as { _id: string } | null;
+onMounted(async () => {
+  if (currentUser) {
+    try {
+      await fetchHostedEvents(currentUser._id);
+    } catch (error) {
+      console.error("Failed to fetch hosted events:", error);
+    }
+  }
+});
 </script>
 
 <template>
@@ -27,4 +35,4 @@ onMounted(() => fetchHostedEvents(currentUser._id));
 
 <style scoped>
 /* Add your styles here */
-</style> -->
+</style>

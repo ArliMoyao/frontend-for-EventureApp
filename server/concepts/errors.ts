@@ -33,7 +33,7 @@ export class NotFoundError extends FormattableError {
 }
 
 /**
- * Corresponds to an action that attempts to access an event when it is full at capacity 
+ * Corresponds to an action that attempts to access an event when it is full at capacity
  *
  */
 export class CapacityError extends FormattableError {

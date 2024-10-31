@@ -4,7 +4,7 @@ import { Router, getExpressRouter } from "./framework/router";
 
 import { Authing, Eventing, MoodSyncing, Notifying, Posting, RSVPing, Sessioning, Upvoting } from "./app";
 //import { PostOptions } from "./concepts/posting";
-import { z } from "zod";
+// import { z } from "zod";
 import { PostOptions } from "./concepts/posting";
 import { SessionDoc } from "./concepts/sessioning";
 import Responses from "./responses";
@@ -384,7 +384,7 @@ class Routes {
   }
 
   @Router.get("/posts")
-  @Router.validate(z.object({ author: z.string().optional() }))
+  // @Router.validate(z.object({ author: z.string().optional() }))
   async getPosts(author?: string) {
     let posts;
     if (author) {
@@ -582,7 +582,7 @@ class Routes {
   // }
 
   //   @Router.get("/posts")
-  //   @Router.validate(z.object({ author: z.string().optional() }))
+  //   @Router.(z.object({ author: z.string().optional() }))
   //   async getPosts(author?: string) {
   //     let posts;
   //     if (author) {
