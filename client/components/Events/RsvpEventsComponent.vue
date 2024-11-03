@@ -5,18 +5,10 @@ import { onMounted } from "vue";
 
 const eventStore = useEventStore();
 const userStore = useUserStore();
-const { rsvpEvents, loading, error, fetchRsvpEvents } = eventStore;
+const { events, rsvpEvents, loading, error, fetchRsvpEvents } = eventStore;
 const { currentUser } = userStore;
 
-onMounted(async () => {
-  if (currentUser) {
-    try {
-      await fetchRsvpEvents(currentUser);
-    } catch (error) {
-      console.error("Failed to fetch RSVP'd events:", error);
-    }
-  }
-});
+onMounted(fetchRsvpEvents);
 </script>
 
 <template>
@@ -25,7 +17,7 @@ onMounted(async () => {
     <div v-if="loading">Loading...</div>
     <div v-else-if="error">{{ error }}</div>
     <div v-else>
-      <div v-for="event in rsvpEvents" :key="event._id" class="event-post">
+      <div v-for="event in events" :key="event._id.toString()" class="event-post">
         <h2>{{ event.title }}</h2>
         <p>{{ event.description }}</p>
         <p><strong>Date:</strong> {{ new Date(event.date).toLocaleDateString() }}</p>
