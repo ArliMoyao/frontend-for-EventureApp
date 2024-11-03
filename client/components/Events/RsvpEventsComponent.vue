@@ -22,7 +22,6 @@ onMounted(fetchRSVPs);
     <div v-for="event in rsvpEvents" :key="event._id.toString()" class="event-post">
       <h2>{{ event.title }}</h2>
       <p>{{ event.description }}</p>
-      <p><strong>Date:</strong> {{ new Date(event.date).toLocaleDateString() }}</p>
       <p><strong>Location:</strong> {{ event.location }}</p>
       <p><strong>Capacity:</strong> {{ event.capacity }}</p>
     </div>

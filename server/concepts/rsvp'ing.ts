@@ -1,12 +1,13 @@
 import { ObjectId } from "mongodb";
 import DocCollection, { BaseDoc } from "../framework/doc";
 import { NotAllowedError, NotFoundError } from "./errors";
+import { EventDoc } from "./events";
 
 // RSVPing Concept
-export interface RSVPDoc extends BaseDoc {
+export interface RSVPDoc extends EventDoc {
   user: ObjectId;
   event: ObjectId;
-  status: boolean; // true if user has RSVP'd, false otherwise
+  rsvpStatus: boolean; // true if user has RSVP'd, false otherwise
 }
 
 // export interface LocalEventDoc extends BaseDoc {
@@ -27,9 +28,9 @@ export default class RSVPConcept {
     // this.events = new DocCollection<LocalEventDoc>("events");
   }
 
-  async createRSVP(user: ObjectId, event: ObjectId, status: boolean) {
-    status = true;
-    const _id = await this.rsvps.createOne({ user, event, status });
+  async createRSVP(user: ObjectId, event: ObjectId, rsvpStatus: boolean) {
+    rsvpStatus = true;
+    const _id = await this.rsvps.createOne({ user, event, rsvpStatus });
     return { msg: "RSVP successfully created!", rsvp: await this.rsvps.readOne({ _id }) };
   }
 

@@ -24,6 +24,7 @@ interface Event {
   location: string;
   capacity: number;
 }
+
 export const useEventStore = defineStore("eventStore", () => {
   const events = ref<Event[]>([]);
   const hostedEvents = ref<any[]>([]);
