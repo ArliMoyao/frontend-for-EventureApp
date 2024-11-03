@@ -11,7 +11,7 @@ const { currentUser } = userStore;
 onMounted(async () => {
   if (currentUser) {
     try {
-      await fetchRsvpEvents(currentUser._id);
+      await fetchRsvpEvents(currentUser);
     } catch (error) {
       console.error("Failed to fetch RSVP'd events:", error);
     }
