@@ -17,7 +17,7 @@ onMounted(fetchRsvpEvents);
 
 <template>
   <div>
-    <h1>RSVP'd Events</h1>
+    <h1>RSVP'd Events for {{ currentUser }}</h1>
     <div v-if="loading">Loading...</div>
     <div v-else-if="error">{{ error }}</div>
     <div v-else>
