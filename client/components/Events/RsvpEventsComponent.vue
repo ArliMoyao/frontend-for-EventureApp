@@ -9,6 +9,10 @@ const { events, rsvpEvents, loading, error, fetchRsvpEvents } = eventStore;
 const { currentUser } = userStore;
 
 onMounted(fetchRsvpEvents);
+
+// const handleRsvpForEvent = async (eventId: ObjectId) => {
+//   await eventStore.rsvpForEvent(eventId);
+// };
 </script>
 
 <template>

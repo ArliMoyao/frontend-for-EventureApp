@@ -51,8 +51,8 @@ export default class RSVPConcept {
     }
   }
 
-  async getRSVPByUser(user: ObjectId) {
-    return await this.rsvps.readMany({ user });
+  async getRSVPByUser(userId: ObjectId) {
+    return await this.rsvps.readMany({user: userId});
   }
 }
 

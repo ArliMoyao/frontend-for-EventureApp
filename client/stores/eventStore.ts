@@ -64,6 +64,7 @@ export const useEventStore = defineStore("eventStore", () => {
     try {
       const response = await fetchy(`/api/rsvps/${userId}`, "GET");
       rsvpEvents.value = response;
+      alert("RSVP'd events fetched!");
     } catch (err) {
       error.value = "Failed to fetch RSVP'd events.";
     } finally {
