@@ -3,6 +3,7 @@ import { ref } from "vue";
 
 import { fetchy } from "@/utils/fetchy";
 import { ObjectId } from "mongodb";
+// import { number } from "zod";
 
 export interface EventDoc {
   _id: ObjectId;
@@ -29,7 +30,7 @@ export const useEventStore = defineStore("eventStore", () => {
   const rsvpEvents = ref<any[]>([]);
   const loading = ref(false);
   const error = ref<string | null>(null);
-  const upvoteCount = ref<number | null>(null);
+  const upvoteCount = ref<number>(0);
 
   const fetchEvents = async () => {
     loading.value = true;
@@ -92,7 +93,7 @@ export const useEventStore = defineStore("eventStore", () => {
   const getUpvoteCount = async (eventId: ObjectId) => {
     try {
       const response = await fetchy(`/api/upvotes/${eventId}/upVoteCount`, "GET");
-      upvoteCount.value = response.upVoteCount;
+      upvoteCount.value = response;
     } catch (err) {
       console.error("Failed to get upvote count:", err);
     }
