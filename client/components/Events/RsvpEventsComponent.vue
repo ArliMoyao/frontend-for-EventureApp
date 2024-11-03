@@ -17,7 +17,7 @@ onMounted(fetchRsvpEvents);
     <div v-if="loading">Loading...</div>
     <div v-else-if="error">{{ error }}</div>
     <div v-else>
-      <div v-for="event in events" :key="event._id.toString()" class="event-post">
+      <div v-for="event in rsvpEvents" :key="event._id.toString()" class="event-post">
         <h2>{{ event.title }}</h2>
         <p>{{ event.description }}</p>
         <p><strong>Date:</strong> {{ new Date(event.date).toLocaleDateString() }}</p>
