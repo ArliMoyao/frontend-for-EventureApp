@@ -19,10 +19,6 @@ onMounted(fetchEvents);
 // };
 
 const handleUpVote = async (eventId: ObjectId) => {
-  if (!currentUser) {
-    alert("You need to be logged in to upvote an event.");
-    return;
-  }
   await eventStore.upvoteEvent(eventId);
 };
 </script>
