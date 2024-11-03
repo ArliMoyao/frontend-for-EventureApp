@@ -38,7 +38,7 @@ const handleUndoRsvp = async (rsvpId: ObjectId) => {
   <div>
     <h1>RSVP'd Events for {{ currentUsername }}</h1>
     <div v-for="rsvp in rsvpEvents" :key="rsvp._id.toString()" class="event-post">
-      <h2>{{ rsvp.event.title }}</h2>
+      <h2>Event Title: {{ rsvp.event.title }}</h2>
       <p>{{ rsvp.event.description }}</p>
       <p><strong>Location:</strong> {{ rsvp.event.location }}</p>
       <p><strong>Capacity:</strong> {{ rsvp.event.capacity }}</p>

@@ -49,7 +49,7 @@ export const useUserStore = defineStore(
 
     const fetchRSVPs = async () => {
       const response = await fetchy("/api/rsvps", "GET");
-      rsvpEvents.value = response;
+      rsvpEvents.value = await response.json();
     };
     const updateUserUsername = async (username: string) => {
       await fetchy("/api/users/username", "PATCH", { body: { username } });
