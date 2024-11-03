@@ -5,7 +5,7 @@ import { ObjectId } from "mongodb";
 import { onMounted } from "vue";
 const eventStore = useEventStore();
 const userStore = useUserStore();
-const { events, loading, error, fetchEvents, rsvpForEvent } = eventStore;
+const { events, getUpvoteCount, loading, error, fetchEvents, rsvpForEvent } = eventStore;
 const { currentUser } = userStore;
 
 onMounted(fetchEvents);
@@ -34,8 +34,9 @@ const handleUpVote = async (eventId: ObjectId) => {
         <p><strong>Date:</strong> {{ new Date(event.date).toLocaleDateString() }}</p>
         <p><strong>Location:</strong> {{ event.location }}</p>
         <p><strong>Capacity:</strong> {{ event.capacity }}</p>
+
         <!-- <button @click="rsvpForEvent(event._id.toString())" class="pure-button pure-button-primary">RSVP</button> -->
-        <!-- <p><strong>Upvotes:</strong> {{ event.upvotes }}</p> -->
+        <p><strong>Upvotes:</strong> {{ getUpvoteCount }}</p>
         <button @click="handleUpVote(event._id)" class="pure-button pure-button-primary">Upvote</button>
       </div>
     </div>

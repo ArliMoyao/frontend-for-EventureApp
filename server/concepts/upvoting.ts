@@ -40,6 +40,13 @@ export default class UpvotingConcept {
     return { msg: "Upvote successfully deleted", upvote: await this.upvotes.readOne({ _id }) };
   }
 
+  async getUpvoteCount(eventId: ObjectId) {
+    const upvote = await this.upvotes.readOne({ eventId });
+    if (!upvote) {
+      throw new NotAllowedError(`Event ${eventId} does not exist for incrementing upvotes.`);
+    }
+    return { upVoteCount: upvote.upVoteCount };
+  }
   //
   // const upvote = await this.upvotes.popOne({ userId, eventId });
   // if (!upvote) {
@@ -47,15 +54,14 @@ export default class UpvotingConcept {
   // }
   // return { msg: "Upvote removed successfully!" };
 
-  // async incrementUpvoteCount(eventId: ObjectId) {
-  //   const result = await this.upvotes.incrementOne(
-  //     { eventId },
-  //     { $inc: { upVoteCount: 1 } });
-  //   if (result.matchedCount === 0) {
-  //     throw new NotFoundError(`Event ${eventId} does not exist for incrementing upvotes.`);
-  //   }
-  //   return { msg: "Upvote count incremented successfully!" };
-  // }
+  async incrementUpvoteCount(eventId: ObjectId) {
+    const upvote = await this.upvotes.readOne({ eventId });
+    if (!upvote) {
+      throw new NotAllowedError(`Event ${eventId} does not exist for incrementing upvotes.`);
+    }
+    await this.upvotes.partialUpdateOne({ _id: upvote._id }, { $inc: { upVoteCount: 1 } } as Partial<UpvoteDoc>);
+    return { msg: "Upvote count incremented successfully!" };
+  }
 
   // async removeUpvote(userId: ObjectId, eventId: ObjectId) {
   //     const upvote = await this.upvotes.popOne({ userId, eventId });

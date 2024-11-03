@@ -166,6 +166,18 @@ class Routes {
     return await Upvoting.deleteUpvote(eventId);
   }
 
+  @Router.patch("/upvotes/:eventid")
+  async incrementUpvote(eventid: string) {
+    const eventId = new ObjectId(eventid);
+    await Upvoting.incrementUpvoteCount(eventId);
+    return { msg: "Upvote count incremented successfully!" };
+  }
+
+  @Router.get("/upvotes/:eventid/upVoteCount")
+  async getUpvoteCount(eventid: string) {
+    const eventId = new ObjectId(eventid);
+    return await Upvoting.getUpvoteCount(eventId);
+  }
   // Create a notification
   @Router.post("/notifications")
   async createNotification(session: SessionDoc, message: string) {

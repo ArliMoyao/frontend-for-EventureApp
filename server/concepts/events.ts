@@ -14,6 +14,7 @@ export interface EventDoc extends BaseDoc {
   date: Date;
   attendees: ObjectId[];
   status: "upcoming" | "ongoing" | "completed" | "canceled";
+  upvoteCount: number;
 }
 
 /**
@@ -41,6 +42,7 @@ export default class EventsConcept {
       date,
       status: "upcoming",
       attendees: [],
+      upvoteCount: 0,
     });
     return { msg: "Event successfully created!", event: await this.events.readOne({ _id }) };
   }

@@ -29,6 +29,7 @@ export const useEventStore = defineStore("eventStore", () => {
   const rsvpEvents = ref<any[]>([]);
   const loading = ref(false);
   const error = ref<string | null>(null);
+  const upvoteCount = ref<number | null>(null);
 
   const fetchEvents = async () => {
     loading.value = true;
@@ -88,6 +89,15 @@ export const useEventStore = defineStore("eventStore", () => {
     }
   };
 
+  const getUpvoteCount = async (eventId: ObjectId) => {
+    try {
+      const response = await fetchy(`/api/upvotes/${eventId}/upVoteCount`, "GET");
+      upvoteCount.value = response.upVoteCount;
+    } catch (err) {
+      console.error("Failed to get upvote count:", err);
+    }
+  };
+
   const addEvent = async (event: any) => {
     try {
       const response = await fetchy(`/api/events`, "POST", { body: event });
@@ -103,5 +113,5 @@ export const useEventStore = defineStore("eventStore", () => {
   // const getEventById = (eventId: string) => {
   //   return events.value.find((event) => event._id === eventId);
   // };
-  return { events, addEvent, hostedEvents, rsvpEvents, loading, error, handleEventCreated, fetchEvents, fetchHostedEvents, fetchRsvpEvents, rsvpForEvent, upvoteEvent };
+  return { events, addEvent, hostedEvents, rsvpEvents, loading, error, handleEventCreated, fetchEvents, fetchHostedEvents, fetchRsvpEvents, rsvpForEvent, upvoteEvent, getUpvoteCount };
 });
