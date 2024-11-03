@@ -59,7 +59,7 @@ class Routes {
   }
 
   @Router.get("/events/:id")
-  async getEventDetails(id: string) {
+  async getEventDetails(id: ObjectId) {
     return await Eventing.getEventById(new ObjectId(id));
   }
 
@@ -96,7 +96,7 @@ class Routes {
 
   // RSVPING CONCEPT
   @Router.post("/rsvps/:eventid")
-  async createRSVP(session: SessionDoc, eventid: string) {
+  async createRSVP(session: SessionDoc, eventid: ObjectId) {
     const user = Sessioning.getUser(session);
     const event = await Eventing.getEventById(new ObjectId(eventid));
 
@@ -115,7 +115,7 @@ class Routes {
   }
 
   @Router.delete("/rsvps/:rsvpid")
-  async deleteRSVP(session: SessionDoc, rsvpid: string) {
+  async deleteRSVP(session: SessionDoc, rsvpid: ObjectId) {
     const user = Sessioning.getUser(session);
     const oid = new ObjectId(rsvpid);
     await Notifying.createNotification(user, `You have cancelled your RSVP to event ${rsvpid}`);
@@ -123,12 +123,12 @@ class Routes {
   }
 
   @Router.get("/events/:host")
-  async getEventsByUser(userId: string) {
+  async getEventsByUser(userId: ObjectId) {
     return await Eventing.getEventsHostedByUser(new ObjectId(userId));
   }
 
   @Router.get("/rsvps/:userid")
-  async getRSVPByUser(userId: string) {
+  async getRSVPByUser(userId: ObjectId) {
     return await RSVPing.getRSVPByUser(new ObjectId(userId));
   }
   // @Router.post("/tags/initialize")
@@ -150,7 +150,7 @@ class Routes {
   }
 
   @Router.post("/upvotes/:eventid")
-  async upvote(session: SessionDoc, eventid: string) {
+  async upvote(session: SessionDoc, eventid: ObjectId) {
     const user = Sessioning.getUser(session);
     const eventId = new ObjectId(eventid);
     await Upvoting.createUpvote(user, eventId, 1);

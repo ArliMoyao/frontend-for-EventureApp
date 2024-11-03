@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import PostListComponent from "@/components/Post/PostListComponent.vue";
-import { useUserStore } from "@/stores/user";
-import { storeToRefs } from "pinia";
 import EventCreateForm from "@/components/Events/EventCreateForm.vue";
 import EventListComponent from "@/components/Events/EventListComponent.vue";
 import HostedEventsComponent from "@/components/Events/HostedEventsComponent.vue";
 import RsvpEventsComponent from "@/components/Events/RsvpEventsComponent.vue";
 import SearchBar from "@/components/Events/SearchBar.vue";
+import PostListComponent from "@/components/Post/PostListComponent.vue";
+import { useUserStore } from "@/stores/user";
+import { storeToRefs } from "pinia";
 import { ref } from "vue";
 
 export interface Event {
@@ -20,6 +20,8 @@ export interface Event {
 
 const { currentUsername, isLoggedIn } = storeToRefs(useUserStore());
 const events = ref<any[]>([]);
+const rsvps = ref<any[]>([]);
+const hostedEvents = ref<any[]>([]);
 const currentTab = ref("all");
 
 function handleEventCreated(newEvent: Event) {
@@ -52,10 +54,10 @@ function handleSearch(query: string) {
         <EventListComponent :events="events" />
       </div>
       <div v-else-if="currentTab === 'hosted'">
-        <HostedEventsComponent />
+        <HostedEventsComponent :hostedEvents="hostedEvents" />
       </div>
       <div v-else-if="currentTab === 'rsvp'">
-        <RsvpEventsComponent />
+        <RsvpEventsComponent :rsvps="rsvps" />
       </div>
     </section>
     <PostListComponent />

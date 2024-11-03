@@ -16,7 +16,7 @@ export interface EventDoc {
 }
 
 interface Event {
-  _id: string;
+  _id: ObjectId;
   title: string;
   description: string;
   date: string;
@@ -79,14 +79,10 @@ export const useEventStore = defineStore("eventStore", () => {
       alert("Failed to RSVP for the event.");
     }
   };
-  const upvoteEvent = async (eventId: string) => {
+  const upvoteEvent = async (eventId: ObjectId) => {
     try {
-      const response = await fetchy(`/api/upvotes/{$eventid}`, "POST");
-      const updatedEvent = await response.json();
-      const index = events.value.findIndex((event) => event._id === eventId);
-      if (index !== -1) {
-        events.value[index] = updatedEvent;
-      }
+      await fetchy(`/api/upvotes/${eventId}`, "POST");
+      alert("Upvoted event!");
     } catch (err) {
       console.error("Failed to upvote event:", err);
     }
