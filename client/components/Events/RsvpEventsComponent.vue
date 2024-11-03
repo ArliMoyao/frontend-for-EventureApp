@@ -1,14 +1,22 @@
 <script setup lang="ts">
 import { useEventStore } from "@/stores/eventStore";
 import { useUserStore } from "@/stores/user";
-// import { onMounted } from "vue";
+import { onMounted } from "vue";
+
 const eventStore = useEventStore();
 const userStore = useUserStore();
 const { rsvpEvents, loading, error, fetchRsvpEvents } = eventStore;
 const { currentUser } = userStore;
 
-// //do check current user not null
-// onMounted(() => fetchRsvpEvents(currentUser._id));
+onMounted(async () => {
+  if (currentUser) {
+    try {
+      await fetchRsvpEvents(currentUser._id);
+    } catch (error) {
+      console.error("Failed to fetch RSVP'd events:", error);
+    }
+  }
+});
 </script>
 
 <template>
