@@ -27,7 +27,6 @@ interface Event {
 export const useEventStore = defineStore("eventStore", () => {
   const events = ref<Event[]>([]);
   const hostedEvents = ref<any[]>([]);
-  const rsvpEvents = ref<any[]>([]);
   const loading = ref(false);
   const error = ref<string | null>(null);
   const upvoteCount = ref<number>(0);
@@ -100,5 +99,5 @@ export const useEventStore = defineStore("eventStore", () => {
   // const getEventById = (eventId: string) => {
   //   return events.value.find((event) => event._id === eventId);
   // };
-  return { events, rsvpForEvent, addEvent, hostedEvents, rsvpEvents, loading, error, handleEventCreated, fetchEvents, fetchHostedEvents, upvoteEvent, upvoteCount };
+  return { events, rsvpForEvent, addEvent, hostedEvents, loading, error, handleEventCreated, fetchEvents, fetchHostedEvents, upvoteEvent, upvoteCount };
 });

@@ -5,11 +5,11 @@ import { onMounted } from "vue";
 
 const eventStore = useEventStore();
 const userStore = useUserStore();
-const { events, rsvpEvents, loading, error } = eventStore;
+const { events, loading, error } = eventStore;
 
-const { currentUsername, fetchRsvpEvents } = useUserStore();
+const { fetchRSVPs, currentUsername, rsvpEvents, fetchRsvpEvents } = useUserStore();
 
-onMounted(fetchRsvpEvents);
+onMounted(fetchRSVPs);
 
 // const handleRsvpForEvent = async (eventId: ObjectId) => {
 //   await eventStore.rsvpForEvent(eventId);

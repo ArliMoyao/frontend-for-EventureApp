@@ -46,6 +46,11 @@ export const useUserStore = defineStore(
       rsvpEvents.value = response;
       alert("RSVP'd events fetched!");
     };
+
+    const fetchRSVPs = async () => {
+      const response = await fetchy("/api/rsvps", "GET");
+      rsvpEvents.value = response;
+    };
     const updateUserUsername = async (username: string) => {
       await fetchy("/api/users/username", "PATCH", { body: { username } });
     };
@@ -71,6 +76,8 @@ export const useUserStore = defineStore(
       updateUserPassword,
       deleteUser,
       fetchRsvpEvents,
+      rsvpEvents,
+      fetchRSVPs,
     };
   },
   { persist: true },
