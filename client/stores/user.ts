@@ -1,11 +1,12 @@
+import { fetchy } from "@/utils/fetchy";
+import { ObjectId } from "mongodb";
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
-
-import { fetchy } from "@/utils/fetchy";
 
 export const useUserStore = defineStore(
   "user",
   () => {
+    const rsvpEvents = ref<any[]>([]);
     const currentUsername = ref("");
     const currentUser = ref(null);
     const isLoggedIn = computed(() => currentUsername.value !== "");
@@ -40,6 +41,11 @@ export const useUserStore = defineStore(
       resetStore();
     };
 
+    const fetchRsvpEvents = async (userId: ObjectId) => {
+      const response = await fetchy(`/api/rsvps/${userId}`, "GET");
+      rsvpEvents.value = response;
+      alert("RSVP'd events fetched!");
+    };
     const updateUserUsername = async (username: string) => {
       await fetchy("/api/users/username", "PATCH", { body: { username } });
     };
@@ -64,6 +70,7 @@ export const useUserStore = defineStore(
       updateUserUsername,
       updateUserPassword,
       deleteUser,
+      fetchRsvpEvents,
     };
   },
   { persist: true },

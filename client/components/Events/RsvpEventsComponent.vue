@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { useEventStore } from "@/stores/eventStore";
 import { useUserStore } from "@/stores/user";
-import { onMounted, ref } from "vue";
-import { storeToRefs } from "pinia";
+import { onMounted } from "vue";
 
 const eventStore = useEventStore();
 const userStore = useUserStore();
-const { events, rsvpEvents, loading, error, fetchRsvpEvents } = eventStore;
-const { currentUsername } = storeToRefs(useUserStore());
+const { events, rsvpEvents, loading, error } = eventStore;
+
+const { currentUsername, fetchRsvpEvents } = useUserStore();
 
 onMounted(fetchRsvpEvents);
 
