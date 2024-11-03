@@ -113,5 +113,5 @@ export const useEventStore = defineStore("eventStore", () => {
   // const getEventById = (eventId: string) => {
   //   return events.value.find((event) => event._id === eventId);
   // };
-  return { events, addEvent, hostedEvents, rsvpEvents, loading, error, handleEventCreated, fetchEvents, fetchHostedEvents, fetchRsvpEvents, rsvpForEvent, upvoteEvent, getUpvoteCount };
+  return { events, addEvent, hostedEvents, rsvpEvents, loading, error, handleEventCreated, fetchEvents, fetchHostedEvents, fetchRsvpEvents, rsvpForEvent, upvoteEvent, upvoteCount };
 });
