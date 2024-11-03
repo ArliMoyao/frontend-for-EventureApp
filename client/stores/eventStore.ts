@@ -71,16 +71,15 @@ export const useEventStore = defineStore("eventStore", () => {
     }
   };
 
-  const rsvpForEvent = async (eventId: string, userId: string) => {
+  const rsvpForEvent = async (eventId: ObjectId) => {
     try {
-      await fetchy("/api//rsvps/:eventid", "POST", {
-        body: { eventId, userId },
-      });
-      alert("RSVP successful!");
+      await fetchy(`/api/rsvps/${eventId}`, "POST");
+      alert("RSVPED for an event!");
     } catch (err) {
-      alert("Failed to RSVP for the event.");
+      console.error("Failed to rsvp for event:", err);
     }
   };
+
   const upvoteEvent = async (eventId: ObjectId) => {
     try {
       await fetchy(`/api/upvotes/${eventId}`, "POST");
@@ -114,5 +113,5 @@ export const useEventStore = defineStore("eventStore", () => {
   // const getEventById = (eventId: string) => {
   //   return events.value.find((event) => event._id === eventId);
   // };
-  return { events, addEvent, hostedEvents, rsvpEvents, loading, error, handleEventCreated, fetchEvents, fetchHostedEvents, fetchRsvpEvents, rsvpForEvent, upvoteEvent, upvoteCount };
+  return { events, rsvpForEvent, addEvent, hostedEvents, rsvpEvents, loading, error, handleEventCreated, fetchEvents, fetchHostedEvents, fetchRsvpEvents, rsvpForEvent, upvoteEvent, upvoteCount };
 });

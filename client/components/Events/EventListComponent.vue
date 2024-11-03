@@ -10,13 +10,9 @@ const { currentUser } = userStore;
 
 onMounted(fetchEvents);
 
-// const handleRsvpForEvent = async (eventId: string) => {
-//   if (!currentUser) {
-//     alert("You need to be logged in to RSVP for an event.");
-//     return;
-//   }
-//   await eventStore.rsvpForEvent(eventId, currentUser._id);
-// };
+const handleRsvpForEvent = async (eventId: ObjectId) => {
+  await eventStore.rsvpForEvent(eventId);
+};
 
 const handleUpVote = async (eventId: ObjectId) => {
   await eventStore.upvoteEvent(eventId);
@@ -35,7 +31,7 @@ const handleUpVote = async (eventId: ObjectId) => {
         <p><strong>Location:</strong> {{ event.location }}</p>
         <p><strong>Capacity:</strong> {{ event.capacity }}</p>
 
-        <!-- <button @click="rsvpForEvent(event._id.toString())" class="pure-button pure-button-primary">RSVP</button> -->
+        <button @click="handleRsvpForEvent(event._id)" class="pure-button pure-button-primary">RSVP</button>
         <p><strong>Upvotes:</strong> {{ upvoteCount }}</p>
         <button @click="handleUpVote(event._id)" class="pure-button pure-button-primary">Upvote</button>
       </div>
