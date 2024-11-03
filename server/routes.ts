@@ -106,7 +106,7 @@ class Routes {
 
     await Notifying.createNotification(user, `You have RSVP'd to event ${eventid}`);
 
-    return await RSVPing.createRSVP(user, event._id, true);
+    return await RSVPing.createRSVP(user, event, true);
   }
 
   @Router.get("/rsvps")

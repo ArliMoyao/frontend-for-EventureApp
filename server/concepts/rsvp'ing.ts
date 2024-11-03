@@ -4,9 +4,9 @@ import { NotAllowedError, NotFoundError } from "./errors";
 import { EventDoc } from "./events";
 
 // RSVPing Concept
-export interface RSVPDoc extends EventDoc {
+export interface RSVPDoc extends BaseDoc {
   user: ObjectId;
-  event: ObjectId;
+  event: EventDoc;
   rsvpStatus: boolean; // true if user has RSVP'd, false otherwise
 }
 
@@ -28,7 +28,7 @@ export default class RSVPConcept {
     // this.events = new DocCollection<LocalEventDoc>("events");
   }
 
-  async createRSVP(user: ObjectId, event: ObjectId, rsvpStatus: boolean) {
+  async createRSVP(user: ObjectId, event: EventDoc, rsvpStatus: boolean) {
     rsvpStatus = true;
     const _id = await this.rsvps.createOne({ user, event, rsvpStatus });
     return { msg: "RSVP successfully created!", rsvp: await this.rsvps.readOne({ _id }) };

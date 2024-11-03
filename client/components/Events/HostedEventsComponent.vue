@@ -16,7 +16,7 @@ onMounted(async () => {
   }
 });
 </script>
-
+<!-- 
 <template>
   <div>
     <h2>Hosted Events</h2>
@@ -31,7 +31,7 @@ onMounted(async () => {
       </li>
     </ul>
   </div>
-</template>
+</template> -->
 
 <style scoped>
 /* Add your styles here */

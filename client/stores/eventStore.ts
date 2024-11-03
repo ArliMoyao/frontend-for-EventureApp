@@ -66,6 +66,14 @@ export const useEventStore = defineStore("eventStore", () => {
       console.error("Failed to rsvp for event:", err);
     }
   };
+  const deleteRSVP = async (rsvpId: ObjectId) => {
+    try {
+      await fetchy(`/api/rsvps/${rsvpId}`, "DELETE");
+      alert("RSVP removed!");
+    } catch (err) {
+      console.error("Failed to undo rsvp for event:", err);
+    }
+  };
 
   const upvoteEvent = async (eventId: ObjectId) => {
     try {
@@ -100,5 +108,5 @@ export const useEventStore = defineStore("eventStore", () => {
   // const getEventById = (eventId: string) => {
   //   return events.value.find((event) => event._id === eventId);
   // };
-  return { events, rsvpForEvent, addEvent, hostedEvents, loading, error, handleEventCreated, fetchEvents, fetchHostedEvents, upvoteEvent, upvoteCount };
+  return { deleteRSVP, events, rsvpForEvent, addEvent, hostedEvents, loading, error, handleEventCreated, fetchEvents, fetchHostedEvents, upvoteEvent, upvoteCount };
 });
